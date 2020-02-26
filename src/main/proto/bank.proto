@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.gRPC_quickstart_bank";
+
+package com.gRPC_quickstart_bank;
+
+message AccountRequest {
+    int32 clientId = 1;
+}
+
+message AccountResponse {
+    UserPrivacyData userPrivacyData = 1;
+    string tariff = 2;
+    int32 amountOfMoney = 3;
+}
+
+message UserPrivacyData {
+    string clientFirstName = 1;
+    string clientLastName = 2;
+}

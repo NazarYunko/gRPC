@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.gRPC_quickstart_bank";
+
+package com.gRPC_quickstart_bank;
+
+import "bank.proto";
+
+service BankService {
+    rpc GetCurrent (AccountRequest) returns (AccountResponse);
+}
+
+service UserPrivacyDataService {
+    rpc GetCurrent (AccountRequest) returns (UserPrivacyData);
+}
+
+//an example of streaming service
+service BankStreamingService {
+    rpc Observe (stream AccountRequest) returns (stream AccountResponse);
+}

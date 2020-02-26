@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id "com.google.protobuf" version "0.8.8"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile group: 'io.grpc', name: 'grpc-all', version: '1.19.0'
+    compile "com.google.protobuf:protobuf-java:3.6.1"
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}
+
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.7.0"
+    }
+    plugins {
+        grpc {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.19.0"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
+}
